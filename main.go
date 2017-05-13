@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"os"
 )
 
 // The number of cell by one side.
@@ -19,7 +20,13 @@ const (
 // Field is whole game board.
 type Field [l][l]Color
 
+var verbose = false
+
 func main() {
+	if len(os.Args) >= 2 && os.Args[1] == "-v" {
+		verbose = true
+	}
+
 	field := Field{}
 
 	myColor := Black
@@ -60,6 +67,10 @@ func calcNextPlacing(field Field) (int, int, error) {
 }
 
 func printField(field Field) {
+	if !verbose {
+		return
+	}
+
 	fmt.Print("  ")
 	for x := 0; x < l; x++ {
 		fmt.Printf("%2d", x)
