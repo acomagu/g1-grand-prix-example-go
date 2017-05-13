@@ -51,6 +51,8 @@ func main() {
 		printField(field)
 
 		myY, myX, _ := calcNextPlacing(field)
+
+		fmt.Printf("%d %d\n", myY, myX)
 		field[myY][myX] = myColor
 	}
 }
