@@ -13,8 +13,8 @@ type State int
 
 const (
 	Empty State = iota
-	Black
-	White
+	Me
+	Opponent
 )
 
 // Field is whole game board.
@@ -29,9 +29,6 @@ func main() {
 
 	field := Field{}
 
-	myState := Black
-	opponentState := White
-
 	for {
 		printField(field)
 
@@ -41,11 +38,8 @@ func main() {
 			break
 		}
 
-		if opponentY == -1 && opponentX == -1 {
-			myState = White
-			opponentState = Black
-		} else {
-			field[opponentY][opponentX] = opponentState
+		if opponentY != -1 && opponentX != -1 {
+			field[opponentY][opponentX] = Opponent
 		}
 
 		printField(field)
@@ -53,7 +47,7 @@ func main() {
 		myY, myX, _ := calcNextPlacing(field)
 
 		fmt.Printf("%d %d\n", myY, myX)
-		field[myY][myX] = myState
+		field[myY][myX] = Me
 	}
 }
 
@@ -85,10 +79,10 @@ func printField(field Field) {
 			switch field[y][x] {
 			case Empty:
 				fmt.Print("  ")
-			case Black:
-				fmt.Print(" x")
-			case White:
+			case Me:
 				fmt.Print(" o")
+			case Opponent:
+				fmt.Print(" x")
 			}
 		}
 		fmt.Printf("%2d\n", y)
