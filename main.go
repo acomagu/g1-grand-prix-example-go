@@ -52,6 +52,7 @@ func main() {
 }
 
 func calcNextPlacing(field Field) (int, int, error) {
+	// Change here!
 	for y := 0; y < l; y++ {
 		for x := 0; x < l; x++ {
 			if field[y][x] == Empty {
