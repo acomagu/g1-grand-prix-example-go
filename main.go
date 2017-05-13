@@ -67,30 +67,31 @@ func printField(field Field) {
 		return
 	}
 
-	fmt.Print("  ")
+	fmt.Fprint(os.Stderr, "  ")
+	
 	for x := 0; x < l; x++ {
-		fmt.Printf("%2d", x)
+		fmt.Fprintf(os.Stderr, "%2d", x)
 	}
-	fmt.Println()
+	fmt.Fprintln(os.Stderr, )
 
 	for y := 0; y < l; y++ {
-		fmt.Printf("%2d", y)
+		fmt.Fprintf(os.Stderr, "%2d", y)
 		for x := 0; x < l; x++ {
 			switch field[y][x] {
 			case Empty:
-				fmt.Print("  ")
+				fmt.Fprint(os.Stderr, "  ")
 			case Me:
-				fmt.Print(" o")
+				fmt.Fprint(os.Stderr, " o")
 			case Opponent:
-				fmt.Print(" x")
+				fmt.Fprint(os.Stderr, " x")
 			}
 		}
-		fmt.Printf("%2d\n", y)
+		fmt.Fprintf(os.Stderr, "%2d\n", y)
 	}
 
-	fmt.Print("  ")
+	fmt.Fprint(os.Stderr, "  ")
 	for x := 0; x < l; x++ {
-		fmt.Printf("%2d", x)
+		fmt.Fprintf(os.Stderr, "%2d", x)
 	}
-	fmt.Println()
+	fmt.Fprintln(os.Stderr, )
 }
