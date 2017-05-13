@@ -8,17 +8,17 @@ import (
 // The number of cell by one side.
 const l = 19
 
-// Color is whether the cell is black, white or empty.
-type Color int
+// State is whether the cell is black, white or empty.
+type State int
 
 const (
-	Empty Color = iota
+	Empty State = iota
 	Black
 	White
 )
 
 // Field is whole game board.
-type Field [l][l]Color
+type Field [l][l]State
 
 var verbose = false
 
@@ -29,8 +29,8 @@ func main() {
 
 	field := Field{}
 
-	myColor := Black
-	opponentColor := White
+	myState := Black
+	opponentState := White
 
 	for {
 		printField(field)
@@ -42,10 +42,10 @@ func main() {
 		}
 
 		if opponentY == -1 && opponentX == -1 {
-			myColor = White
-			opponentColor = Black
+			myState = White
+			opponentState = Black
 		} else {
-			field[opponentY][opponentX] = opponentColor
+			field[opponentY][opponentX] = opponentState
 		}
 
 		printField(field)
@@ -53,7 +53,7 @@ func main() {
 		myY, myX, _ := calcNextPlacing(field)
 
 		fmt.Printf("%d %d\n", myY, myX)
-		field[myY][myX] = myColor
+		field[myY][myX] = myState
 	}
 }
 
